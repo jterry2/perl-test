@@ -27,7 +27,7 @@ my $dsn = "DBI:mysql:$dbName:$host";
 my $dbObject = DBI->connect($dsn, $user, $dbPassword)
 or print ("Can't connect user $user to database $host:$dbName");
 
-my $query = "SELECT * from apps_countries";
+my $query = "SELECT Name, Capital from apps_countries";
 my $sth = $dbObject->prepare ($query);
 $sth->execute() or print "error executing";
 

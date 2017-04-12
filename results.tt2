@@ -1,5 +1,5 @@
 <html>
 <table>
 [% FOREACH country IN countries %]
-<tr><td> [% country.id %]</td><td> [% country.country_name %]</td></tr>
+<tr><td> [% country.Name %]</td><td> [% country.Capital %]</td></tr>
 [% END %]
