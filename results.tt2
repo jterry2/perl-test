@@ -1,0 +1,5 @@
+<html>
+<table>
+[% FOREACH country IN countries %]
+<tr><td> [% country.id %]</td><td> [% country.country_name %]</td></tr>
+[% END %]

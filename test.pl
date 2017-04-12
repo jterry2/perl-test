@@ -1,8 +1,16 @@
-#!/usr/bin/perl
-use strict; 
+use strict;
 use Template;
 use DBI;
 use CGI;
+
+use constant TEMPLATE => 'results.tt2';
+use constant TEMPLATELIB => '.';
+
+my %config=(
+        INCLUDE_PATH => [ TEMPLATELIB ],
+    );
+
+my $ttObject = Template->new( \%config );
 
 my $cgiObject=new CGI; #$cgiObject=CGI->new();
 print STDOUT $cgiObject->header('text/html');
@@ -18,10 +26,19 @@ my $dsn = "DBI:mysql:$dbName:$host";
 
 my $dbObject = DBI->connect($dsn, $user, $dbPassword)
 or print ("Can't connect user $user to database $host:$dbName");
+
 my $query = "SELECT * from apps_countries";
 my $sth = $dbObject->prepare ($query);
 $sth->execute() or print "error executing";
+
+my @table;
 while (my $ref = $sth->fetchrow_hashref()) {
-	print $ref;
+        push(@table, $ref);
 }
 
+my $vars = {
+        countries => \@table
+};
+
+$ttObject->process ( TEMPLATE, $vars )
+        or die( $ttObject->error() );
