@@ -1,5 +1,5 @@
 <html>
 <table>
 [% FOREACH country IN countries %]
-<tr><td> [% country.Name %]</td><td> [% country.Capital %]</td></tr>
+<tr><td> [% country.Name %]</td><td> <a href="pop.pl?[% country.ID %]">[% country.Capital %]</td></tr>
 [% END %]

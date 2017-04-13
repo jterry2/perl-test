@@ -1,0 +1,5 @@
+<html>
+[% FOREACH city IN cities %]
+<p>The population of [% city.Name %] is [% city.Population %] </p>
+[% END %]
+</html>
